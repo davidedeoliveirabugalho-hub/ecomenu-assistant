@@ -43,76 +43,7 @@ def main():
             label="Groupes d'aliments", value=len(data["Groupe d'aliment"].unique())
         )
 
-    # Interface de recherche
-    st.header("🔍 Rechercher un produit")
-
-    col1, col2 = st.columns([2, 1])
-
-    with col1:
-        produit_recherche = st.text_input(
-            "Tapez le nom d'un produit (ex: pomme, bœuf, fromage...)",
-            placeholder="Rechercher un produit...",
-        )
-
-    with col2:
-        groupe_filtre = st.selectbox(
-            "Filtrer par groupe",
-            ["Tous"] + sorted(data["Groupe d'aliment"].unique().tolist()),
-        )
-
-    # Filtrage des données
-    data_filtree = data.copy()
-
-    if groupe_filtre != "Tous":
-        data_filtree = data_filtree[data_filtree["Groupe d'aliment"] == groupe_filtre]
-
-    if produit_recherche:
-        data_filtree = data_filtree[
-            data_filtree["Nom du Produit en Français"].str.contains(
-                produit_recherche, case=False, na=False
-            )
-        ]
-
-    # Affichage des résultats
-    if len(data_filtree) > 0:
-        st.header("📊 Résultats")
-
-        # Trier par impact CO2
-        data_affichage = data_filtree.sort_values("Changement climatique")
-
-        # Afficher le tableau
-        st.dataframe(
-            data_affichage[
-                [
-                    "Nom du Produit en Français",
-                    "Groupe d'aliment",
-                    "Changement climatique",
-                ]
-            ],
-            column_config={
-                "Nom du Produit en Français": "Produit",
-                "Groupe d'aliment": "Groupe",
-                "Changement climatique": st.column_config.NumberColumn(
-                    "Impact CO2 (kg)",
-                    help="Émissions de CO2 équivalent en kg",
-                    format="%.2f kg",
-                ),
-            },
-            use_container_width=True,
-        )
-
-        # Produit avec le moins d'impact
-        if len(data_affichage) > 0:
-            meilleur_produit = data_affichage.iloc[0]
-            st.success(
-                f"💚 **Meilleur choix** : {meilleur_produit['Nom du Produit en Français']} "
-                f"({meilleur_produit['Changement climatique']:.2f} kg CO2)"
-            )
-
-    elif produit_recherche:
-        st.warning("Aucun produit trouvé pour cette recherche.")
-
-    # Interface de recherche
+        # Interface de recherche
     st.header("🔍 Rechercher un produit")
 
     produit_recherche = st.text_input(
@@ -146,6 +77,31 @@ def main():
                         st.error(f"{impact:.2f} kg CO2")
         else:
             st.write("Aucun produit trouvé")
+
+        # Recommandations automatiques
+        if len(resultats) > 1:
+            st.subheader("💡 Recommandation")
+
+            # Prendre le produit le plus polluant de la recherche
+            produit_polluant = resultats.tail(1).iloc[0]
+            # Prendre le moins polluant
+            produit_eco = resultats.head(1).iloc[0]
+
+            if (
+                produit_polluant["Changement climatique"]
+                > produit_eco["Changement climatique"]
+            ):
+                economie = (
+                    produit_polluant["Changement climatique"]
+                    - produit_eco["Changement climatique"]
+                )
+                st.write(
+                    f"💚 Privilégiez **{produit_eco['Nom du Produit en Français']}** "
+                    f"({produit_eco['Changement climatique']:.2f} kg CO2) "
+                    f"plutôt que **{produit_polluant['Nom du Produit en Français']}** "
+                    f"({produit_polluant['Changement climatique']:.2f} kg CO2)"
+                )
+                st.write(f"**Économie : {economie:.2f} kg CO2**")
 
     # Section d'information
     with st.expander("ℹ️ À propos des données"):
