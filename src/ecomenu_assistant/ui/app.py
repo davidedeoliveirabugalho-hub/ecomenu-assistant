@@ -18,6 +18,23 @@ def main():
 
     st.title("🌱 EcoMenu Assistant")
     st.subheader("Votre assistant alimentaire éco-responsable")
+    
+    # Description du projet
+    st.markdown("""
+    ### 🍃 Découvrez l'impact environnemental de vos aliments
+    
+    EcoMenu Assistant vous aide à faire des choix alimentaires plus durables en vous fournissant 
+    l'empreinte carbone de plus de 2400 produits alimentaires basée sur les données officielles 
+    **AGRIBALYSE 3.2** de l'ADEME.
+    
+    **Fonctionnalités :**
+    - 🔍 Recherchez l'impact CO2 de vos aliments préférés
+    - 📊 Comparez les alternatives plus écologiques
+    - 💡 Recevez des recommandations personnalisées
+    - 📈 Visualisez les données environnementales
+    
+    ---
+    """)
 
     # Chargement des données
     if "data" not in st.session_state:

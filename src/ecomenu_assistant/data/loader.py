@@ -52,6 +52,12 @@ def load_agribalyse_data(file_path: Optional[str] = None) -> pd.DataFrame:
     df_final = df_clean[colonnes_existantes].copy()
     
     print(f"Colonnes sélectionnées: {len(colonnes_existantes)}")
+
+    # Conversion des colonnes texte en type string
+    text_columns = ['Nom du Produit en Français', 'Groupe d\'aliment', 'Sous-groupe d\'aliment']
+    existing_text_columns = [col for col in text_columns if col in df_final.columns]
+    df_final[existing_text_columns] = df_final[existing_text_columns].astype('string')
+    
     return df_final
 
 if __name__ == "__main__":
