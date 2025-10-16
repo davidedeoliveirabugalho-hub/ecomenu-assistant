@@ -16,22 +16,32 @@ EcoMenu Assistant est une application web interactive qui permet de :
 
 ## ✨ Fonctionnalités
 
-### Recherche de produits
+### 🔍 Recherche de produits
 - Base de données de 2451 produits alimentaires français
 - Recherche par nom de produit
-- Tri par impact carbone
+- Tri automatique par impact carbone
 - Recommandations automatiques d'alternatives moins polluantes
+- Codes couleur pour identifier rapidement les impacts (faible/moyen/élevé)
 
-### Analyse des données
+### 📊 Analyse des données
 - Statistiques globales sur les impacts environnementaux
-- Visualisations interactives par groupe d'aliments
-- Distribution des impacts CO2
-- Top 10 des produits champions et polluants
+- Visualisations interactives Plotly par groupe d'aliments
+- Distribution détaillée des impacts CO2
+- Top 10 des produits champions (faible impact) et polluants (fort impact)
+- Analyse par groupes et sous-groupes d'aliments
 
-### Navigation intuitive
-- Interface web responsive
-- Navigation multipage
-- Graphiques interactifs Plotly
+### 💬 Chat IA Intelligent
+- Assistant conversationnel propulsé par OpenAI GPT-3.5
+- Conseils personnalisés sur l'alimentation durable
+- Explications pédagogiques de l'impact carbone
+- Recommandations d'alternatives adaptées
+- Questions suggérées pour démarrer
+- Contexte enrichi avec les données AGRIBALYSE
+
+### 🧭 Navigation intuitive
+- Interface web responsive multi-pages
+- Navigation claire via sidebar
+- Expérience utilisateur fluide
 
 ## 🚀 Installation
 
@@ -99,17 +109,44 @@ ecomenu-assistant/
 
 ## 🎯 Roadmap
 
+### ✅ Complété (v1.0)
 - [x] Chargement et traitement des données AGRIBALYSE
+- [x] Module d'analyse statistique professionnelle
+- [x] Visualisations interactives avec Plotly
 - [x] Interface de recherche de produits
-- [x] Recommandations automatiques
-- [x] Analyses statistiques et visualisations
+- [x] Recommandations automatiques basiques
 - [x] Navigation multipage
-- [ ] Intégration LLM (OpenAI) pour recommandations intelligentes
-- [ ] Calculateur de recettes complètes
-- [ ] Ajout données nutritionnelles (calories)
-- [ ] Export des résultats
-- [ ] Tests automatisés
-- [ ] Déploiement en ligne
+- [x] **Intégration OpenAI GPT-3.5 pour chat intelligent**
+- [x] Page d'analyse complète avec graphiques
+- [x] Assistant conversationnel avec contexte des données
+
+### 🚧 Prochaines améliorations (v2.0)
+- [ ] Calculateur de recettes complètes avec plusieurs ingrédients
+- [ ] Ajout données nutritionnelles (calories, macronutriments)
+- [ ] Export des résultats (PDF, CSV)
+- [ ] Amélioration esthétique des graphiques
+- [ ] Tests automatisés (pytest)
+- [ ] Mode sombre
+- [ ] Filtres avancés (par saison, transport, DQR)
+
+### 🌟 Vision future (v3.0)
+- [ ] Déploiement en ligne (Streamlit Cloud)
+- [ ] Suivi personnalisé de l'empreinte carbone
+- [ ] Recommandations de menus hebdomadaires
+- [ ] Intégration API nutritionnelles externes
+- [ ] Mode hors ligne
+- [ ] Support multilingue
+
+## 💰 Considérations de coûts
+
+L'application utilise l'API OpenAI GPT-3.5-turbo pour le chat intelligent. 
+
+**Coûts estimés :**
+- Développement/tests : ~$0.10-0.50
+- Usage démo/portfolio : ~$1-2/mois
+- Configuration recommandée : Limite de $5/mois pour sécurité
+
+Les données AGRIBALYSE sont entièrement gratuites et open source.
 
 ## 👨‍💻 Auteur
 
