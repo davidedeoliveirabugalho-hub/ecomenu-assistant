@@ -13,6 +13,7 @@ st.set_page_config(
 # Imports
 from navigation import create_navigation
 from analysis_page import show_analysis_page
+from chat_page import show_chat_page
 
 
 def show_search_page():
@@ -158,6 +159,8 @@ def main():
         show_analysis_page()
     elif current_page == "about":
         show_about_page()
+    elif current_page == "chat":
+        show_chat_page()
 
 
 if __name__ == "__main__":

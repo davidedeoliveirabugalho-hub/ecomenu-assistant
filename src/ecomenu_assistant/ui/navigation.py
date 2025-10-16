@@ -13,6 +13,7 @@ def create_navigation():
     pages = {
         "🔍 Recherche de produits": "search",
         "📊 Analyse des données": "analysis",
+        "💬 Chat IA": "chat",
         "📖 À propos": "about"
     }
     
